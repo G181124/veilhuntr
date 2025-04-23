@@ -40,7 +40,7 @@ VeilHuntR adalah tool berbasis CLI yang bisa digunakan langsung lewat terminal u
 ## Instalasi
 
 ```bash
-git clone https://github.com/G181124/veilhuntr.git
+git clone https://github.com/G181124/veilhuntr
 cd veilhuntr
 python3 -m venv venv
 source venv/bin/activate
