@@ -11,6 +11,7 @@ Tidak ada fitur yang bekerja secara simulatif. Seluruh output mencerminkan hasil
 ```
 veilhuntr/
 ├── veilhuntr.py
+├── veilhuntr
 ├── requirements.txt
 ├── XPL0i7z/
 │   ├── aut0spl0it/
@@ -34,12 +35,15 @@ veilhuntr/
 ## Instalasi
 
 ```bash
+git clone https://github.com/G181124/veilhuntr
+cd veilhuntr
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+chmod +x veilhuntr
 ```
 
-## Penggunaan Umum
+## Penggunaan
 
 ```bash
 ./veilhuntr --email someone@mail.com --profile someone --hunt
@@ -61,7 +65,7 @@ pip install -r requirements.txt
 - `--educate`: Menampilkan tips perlindungan digital non-teknis. Tidak ada output dinamis.
 - `--stealth`: Menghapus riwayat `.bash_history`, mengganti PS1 prompt terminal, menonaktifkan autologging pada beberapa sistem shell.
 
-### Eksploitasi Otomatis
+### Eksploitasi
 - `--sqli`: Uji pola SQLi pada parameter URL dengan menyisipkan string seperti `' OR 1=1--` lalu bandingkan panjang respon dan struktur.
 - `--cmdinj`: Uji command injection dengan `;id`, `|whoami` dan lihat respon.
 - `--lfi`: Coba traversal seperti `../../../../etc/passwd` dan cari keyword seperti `root:x:0:0` dalam respon.
@@ -80,7 +84,7 @@ Jika target tidak rentan, output menyatakan "NOT vulnerable" namun payload tetap
 - `--gen-revshell`: Generator payload berbasis OS. Output dalam bentuk script langsung (bash/perl/python).
 - `--obfuscate`: Encode file payload secara XOR dan base64. Kombinasi opsional dan disimpan sebagai output terstruktur.
 
-### Scanner Otomatis
+### Scanner
 - `--scan`: Jalankan pemindaian berdasarkan parameter yang ditentukan. Gunakan `--check-*` untuk menentukan area spesifik.
 - `--deep`: Tambahkan lapisan uji eksplorasi parameter kedua dari URL, crawling ringan (tanpa browser engine), dan query tambahan.
 
@@ -100,18 +104,12 @@ Jika target tidak rentan, output menyatakan "NOT vulnerable" namun payload tetap
 
 ## Catatan Internal
 
-- `PwdSafe` menggunakan dump SHA1 hash lokal, tanpa internet.
+- `PwdSafe` menggunakan dump SHA1 hash lokal.
 - `obfus_enc` menyimpan tiga bentuk hasil: original, xor_encoded, dan base64_encoded.
 - `stealth_mode` melakukan modifikasi prompt terminal dan menyapu history, digunakan untuk pengujian CLI persistence tanpa jejak.
 - Semua fitur eksploitasi menggunakan permintaan nyata dan akan tetap mencetak status NOT vulnerable jika eksploitasi tidak berhasil.
-- Tidak ada sistem login, cookie injection, atau antarmuka otentikasi apapun.
 
 ## Output Management
 
 - Semua output dapat disimpan menggunakan `--save` ke direktori `output/{kategori}/`
 - Format file `.txt` dengan timestamp.
-
-## Perluasan
-
-Setiap modul CVE dapat diperluas dengan menambahkan fungsi eksploitasi baru ke `modexploit_z.py` dengan syarat eksploit benar-benar dapat dikonfirmasi langsung oleh tool ini.
-
